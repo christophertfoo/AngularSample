@@ -1,14 +1,22 @@
-var myApp = angular.module('myApp', []);
+// Create the application module
+var myApp = angular.module('userApp', []);
 
-myApp.controller('MyCtrl', function($scope, $http) {
+// Create the UserCtrl controller
+myApp.controller('UserCtrl', function($scope, $http) {
+  
+  // Models (i.e. data)
   $scope.users = [];
   $scope.newUser = {};
 
+  // Use $http service to load the data
   $http.get('data/users.json').success(function(data) {
     $scope.users = data;
   });
 
   $scope.addUser = function() {
+    
+    // Note: $scope.newUser is set through two-way data binding with
+    // the new user form in the view
     var newUser = $scope.newUser;
     newUser.state = "normal";
     newUser.index = $scope.users.length;
