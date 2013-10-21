@@ -4,16 +4,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ng Sample</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <!-- Import AngularJS library -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    
+    <!-- Import application specific code -->
     <script type="text/javascript" src="js/sample.js"></script>
     <link href="css/sample.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
     <h1>Welcome to my Ng Sample!</h1>
-    <div ng-app="myApp">
-      <div ng-controller="MyCtrl">
+    
+    <!-- This div will use the userApp application module -->
+    <div ng-app="userApp">
+      
+      <!-- This div will use the UserCtrl controller -->
+      <div ng-controller="UserCtrl">
         <table border="1">
           <thead>
             <th>Name</th>
@@ -22,47 +29,57 @@
             <th></th>
             <th ng-if="users.length > 0"></th>
           </thead>
+          
+          <!-- Add a row for each user present in the model layer -->
           <tbody ng-repeat="user in users" ng-switch on="user.state">
+
+            <!-- Edit Mode Template -->
             <tr ng-switch-when="edit">
               <td>
-              <input type="text" ng-model="user.name" />
+                <input type="text" ng-model="user.name" />
               </td>
               <td>
-              <input type="text" ng-model="user.address" />
+                <input type="text" ng-model="user.address" />
               </td>
               <td>
-              <input type="text" ng-model="user.phone_number" />
+                <input type="text" ng-model="user.phone_number" />
               </td>
               <td>
-              <input type="button" ng-click="saveUser(user);" value="Save" />
+                <input type="button" ng-click="saveUser(user);" value="Save" />
               </td>
               <td>
-              <input type="button" ng-click="cancelEdit(user);" value="Cancel" />
+                <input type="button" ng-click="cancelEdit(user);" value="Cancel" />
               </td>
             </tr>
+
+            <!-- Deleted Mode Template -->
             <tr ng-switch-when="deleted" class="deleted">
               <td>{{user.name}} </td>
               <td>{{user.address}}</td>
               <td>{{user.phone_number}}</td>
               <td>
-              <input type="button" ng-click="deleteUser(user);" value="Delete Permanently" />
+                <input type="button" ng-click="deleteUser(user);" value="Delete Permanently" />
               </td>
               <td>
-              <input type="button" ng-click="undoDelete(user)" value="Undo"/>
+                <input type="button" ng-click="undoDelete(user)" value="Undo"/>
               </td>
             </tr>
+
+            <!-- Normal Mode Template -->
             <tr ng-switch-default>
               <td>{{user.name}} </td>
               <td>{{user.address}}</td>
               <td>{{user.phone_number}}</td>
               <td>
-              <input type="button" ng-click="editUser(user);" value="Edit" />
+                <input type="button" ng-click="editUser(user);" value="Edit" />
               </td>
               <td>
-              <input type="button" ng-click="deleteUser(user);" value="Delete"/>
+                <input type="button" ng-click="deleteUser(user);" value="Delete"/>
               </td>
             </tr>
           </tbody>
+          
+          <!-- New User Form -->
           <tbody>
             <tr>
               <td>
