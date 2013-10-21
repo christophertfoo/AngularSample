@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ng Sample</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script type="text/javascript" src="js/sample.js"></script>
+    <link href="css/sample.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <h1>Welcome to my Ng Sample!</h1>
+    <div ng-app="myApp">
+      <div ng-controller="MyCtrl">
+        <table border="1">
+          <thead>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th></th>
+            <th ng-if="users.length > 0"></th>
+          </thead>
+          <tbody ng-repeat="user in users" ng-switch on="user.state">
+            <tr ng-switch-when="edit">
+              <td>
+              <input type="text" ng-model="user.name" />
+              </td>
+              <td>
+              <input type="text" ng-model="user.address" />
+              </td>
+              <td>
+              <input type="text" ng-model="user.phone_number" />
+              </td>
+              <td>
+              <input type="button" ng-click="saveUser(user);" value="Save" />
+              </td>
+              <td>
+              <input type="button" ng-click="cancelEdit(user);" value="Cancel" />
+              </td>
+            </tr>
+            <tr ng-switch-when="deleted" class="deleted">
+              <td>{{user.name}} </td>
+              <td>{{user.address}}</td>
+              <td>{{user.phone_number}}</td>
+              <td>
+              <input type="button" ng-click="deleteUser(user);" value="Delete Permanently" />
+              </td>
+              <td>
+              <input type="button" ng-click="undoDelete(user)" value="Undo"/>
+              </td>
+            </tr>
+            <tr ng-switch-default>
+              <td>{{user.name}} </td>
+              <td>{{user.address}}</td>
+              <td>{{user.phone_number}}</td>
+              <td>
+              <input type="button" ng-click="editUser(user);" value="Edit" />
+              </td>
+              <td>
+              <input type="button" ng-click="deleteUser(user);" value="Delete"/>
+              </td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>
+              <input type="text" ng-model="newUser.name" />
+              </td>
+              <td>
+              <input type="text" ng-model="newUser.address" />
+              </td>
+              <td>
+              <input type="text" ng-model="newUser.phone_number" />
+              </td>
+              <td>
+              <input type="button" ng-click="addUser();" value="Add"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

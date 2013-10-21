@@ -1,0 +1,25 @@
+[
+    {
+        "name": "Test 1",
+        "address": "123 Test St",
+        "phone_number": "132-3212"
+    },
+    
+    {
+        "name": "Test 2",
+        "address": "943 Ala Moana Blvd",
+        "phone_number": "934-4329"
+    },
+    
+    {
+        "name": "Some one else",
+        "address": "439 Dole St",
+        "phone_number": "432-5832"
+    },
+    
+    {
+        "name": "Last person",
+        "address": "49-4290 Some Street",
+        "phone_number": "934-4290"
+    }
+]
