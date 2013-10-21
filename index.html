@@ -53,10 +53,10 @@
             </tr>
 
             <!-- Deleted Mode Template -->
-            <tr ng-switch-when="deleted" class="deleted">
-              <td>{{user.name}} </td>
-              <td>{{user.address}}</td>
-              <td>{{user.phone_number}}</td>
+            <tr ng-switch-when="deleted">
+              <td class="deleted">{{user.name}}</td>
+              <td class="deleted">{{user.address}}</td>
+              <td class="deleted">{{user.phone_number}}</td>
               <td>
                 <input type="button" ng-click="deleteUser(user);" value="Delete Permanently" />
               </td>
