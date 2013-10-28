@@ -5,8 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ng Sample</title>
     
+    <!-- Import jQuery -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
     <!-- Import AngularJS library -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    
+    <!-- Import Booststrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     
     <!-- Import application specific code -->
     <script type="text/javascript" src="js/sample.js"></script>
@@ -21,7 +28,7 @@
       
       <!-- This div will use the UserCtrl controller -->
       <div ng-controller="UserCtrl">
-        <table border="1">
+        <table class="table table-bordered">
           <thead>
             <th>Name</th>
             <th>Address</th>
@@ -36,32 +43,32 @@
             <!-- Edit Mode Template -->
             <tr ng-switch-when="edit">
               <td>
-                <input type="text" ng-model="user.name" />
+                <input type="text" class="form-control" ng-model="user.name" />
               </td>
               <td>
-                <input type="text" ng-model="user.address" />
+                <input type="text" class="form-control" ng-model="user.address" />
               </td>
               <td>
-                <input type="text" ng-model="user.phone_number" />
+                <input type="text" class="form-control" ng-model="user.phone_number" />
               </td>
               <td>
-                <input type="button" ng-click="saveUser(user);" value="Save" />
+                <input type="button" class="btn btn-success" ng-click="saveUser(user);" value="Save" />
               </td>
               <td>
-                <input type="button" ng-click="cancelEdit(user);" value="Cancel" />
+                <input type="button" class="btn btn-danger" ng-click="cancelEdit(user);" value="Cancel" />
               </td>
             </tr>
 
             <!-- Deleted Mode Template -->
-            <tr ng-switch-when="deleted">
-              <td class="deleted">{{user.name}}</td>
-              <td class="deleted">{{user.address}}</td>
-              <td class="deleted">{{user.phone_number}}</td>
+            <tr class="danger" ng-switch-when="deleted">
+              <td>{{user.name}}</td>
+              <td>{{user.address}}</td>
+              <td>{{user.phone_number}}</td>
               <td>
-                <input type="button" ng-click="deleteUser(user);" value="Delete Permanently" />
+                <input type="button" class="btn btn-danger" ng-click="deleteUser(user);" value="Delete Permanently" />
               </td>
               <td>
-                <input type="button" ng-click="undoDelete(user)" value="Undo"/>
+                <input type="button" class="btn btn-success" ng-click="undoDelete(user)" value="Undo"/>
               </td>
             </tr>
 
@@ -71,10 +78,10 @@
               <td>{{user.address}}</td>
               <td>{{user.phone_number}}</td>
               <td>
-                <input type="button" ng-click="editUser(user);" value="Edit" />
+                <input type="button" class="btn btn-primary" ng-click="editUser(user);" value="Edit" />
               </td>
               <td>
-                <input type="button" ng-click="deleteUser(user);" value="Delete"/>
+                <input type="button" class="btn btn-danger" ng-click="deleteUser(user);" value="Delete"/>
               </td>
             </tr>
           </tbody>
@@ -83,16 +90,16 @@
           <tbody>
             <tr>
               <td>
-              <input type="text" ng-model="newUser.name" />
+              <input type="text" class="form-control" ng-model="newUser.name" />
               </td>
               <td>
-              <input type="text" ng-model="newUser.address" />
+              <input type="text" class="form-control" ng-model="newUser.address" />
               </td>
               <td>
-              <input type="text" ng-model="newUser.phone_number" />
+              <input type="text" class="form-control" ng-model="newUser.phone_number" />
               </td>
               <td>
-              <input type="button" ng-click="addUser();" value="Add"/>
+              <input type="button" class="btn btn-primary" ng-click="addUser();" value="Add"/>
               </td>
             </tr>
           </tbody>

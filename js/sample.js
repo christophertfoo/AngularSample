@@ -2,8 +2,8 @@
 var myApp = angular.module('userApp', []);
 
 // Create the UserCtrl controller
-myApp.controller('UserCtrl', function($scope, $http) {
-  
+myApp.controller('UserCtrl', ['$scope', '$http', function($scope, $http) {
+
   // Models (i.e. data)
   $scope.users = [];
   $scope.newUser = {};
@@ -11,10 +11,11 @@ myApp.controller('UserCtrl', function($scope, $http) {
   // Use $http service to load the data
   $http.get('data/users.json').success(function(data) {
     $scope.users = data;
+    _setIndexes();
   });
 
   $scope.addUser = function() {
-    
+
     // Note: $scope.newUser is set through two-way data binding with
     // the new user form in the view
     var newUser = $scope.newUser;
@@ -27,6 +28,7 @@ myApp.controller('UserCtrl', function($scope, $http) {
   $scope.deleteUser = function(user) {
     if (user.state == "deleted") {
       $scope.users.splice(user.index, 1);
+      _setIndexes();
     } else {
       user.state = "deleted";
     }
@@ -54,4 +56,12 @@ myApp.controller('UserCtrl', function($scope, $http) {
     user.phone_number = user.oldPhoneNumber;
     user.state = "normal";
   };
-});
+
+  // Internal Methods
+  function _setIndexes() {
+    $scope.users.forEach(function(user, index) {
+      user.index = index;
+    });
+  }
+
+}]);
